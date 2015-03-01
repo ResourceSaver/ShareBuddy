@@ -1,0 +1,11 @@
+C:\Users\Dell\Desktop\Master\Final Project\WS\WebJob1\bin\Release\WebJob1.exe.config
+C:\Users\Dell\Desktop\Master\02-08-2014\Skrammel\Final Project\WS\WebJob1\bin\Release\WebJob1.exe.config
+C:\Users\Dell\Desktop\Final Project\WS\WebJob1\bin\Release\WebJob1.exe.config
+C:\Users\Dell\Desktop\Final Project\WS\WebJob1\bin\Release\WebJob1.exe
+C:\Users\Dell\Desktop\Final Project\WS\WebJob1\bin\Release\WebJob1.pdb
+C:\Users\Dell\Desktop\Final Project\WS\WebJob1\bin\Release\WS.dll
+C:\Users\Dell\Desktop\Final Project\WS\WebJob1\bin\Release\MySql.Data.dll
+C:\Users\Dell\Desktop\Final Project\WS\WebJob1\bin\Release\WS.pdb
+C:\Users\Dell\Desktop\Final Project\WS\WebJob1\obj\Release\WebJob1.csprojResolveAssemblyReference.cache
+C:\Users\Dell\Desktop\Final Project\WS\WebJob1\obj\Release\WebJob1.exe
+C:\Users\Dell\Desktop\Final Project\WS\WebJob1\obj\Release\WebJob1.pdb

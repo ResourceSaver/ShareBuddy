@@ -1,0 +1,186 @@
+﻿@media only screen and (orientation:portrait){
+    #login { display:none; }
+    #rewards { display:none; }
+    #offline { display:none; }
+    #main { display:none; }
+    #usage { display:none; }
+    #ranking { display:none; }
+    #howotplay { display:none; }
+    #actions { display:none; }
+    #setname { display:none; }
+    #minigame { display:none; }
+    #tutorial { display:none; }
+    #dayisoverpage { display:none; }
+    #waitingfornewday { display:none; }
+    #minigameresult {display:none;}
+    #events {display:none;}
+    #welcomeback {display:none;}
+    #splash {display:none;}
+    #agreement {display:none;}
+    #rankingOverlay {display:none;}
+    #errorCon {display:none;}
+    /*#error { display:block; }*/
+}
+@media only screen and (orientation:landscape){
+     #error { display:none; }
+}
+
+.divTut{
+    height:100%;
+    width:100%;
+    display:none;
+    text-align: justify;
+}
+
+.usageContainer{
+    width:100%;
+    display:block;
+    text-align: center;
+}
+
+.usageCentered{
+    width:60%;
+    display:inline-block;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+    border: black;
+    border: 1px solid;
+    box-shadow: 1px 1px 3px #888888;
+    border-radius: 25px;
+}
+
+.usageGreen{
+    float:left;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    background-image: url('/../Images/green.png');
+    background-repeat: repeat-x;
+}
+
+.usageRed{
+    float:left;
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+    background-image: url('/../Images/red.png');
+    background-repeat: repeat-x;
+}
+
+.actionBox{
+    display:block;
+    text-align:center;
+    float: left;
+    height: 32px;
+    width:15%;
+    line-height: 32px;
+    background-size: 32px 32px;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.actionBoxScore{
+    background-image: url(/../Images/score.png);
+}
+
+.actionBoxEl{
+    background-image: url(/../Images/el.png);
+}
+
+.actionBoxWater{
+    background-image: url(/../Images/water.png);
+}
+
+.header{
+    min-height: 40px !important;
+    max-height: 40px !important;
+        height: 40px !important;
+}
+
+.footer{
+    min-height: 33px !important;
+    height: 33px !important;
+    max-height: 33px !important;
+    bottom:0px;
+}
+
+.pagePC {
+    margin: auto;
+	width:480px !important;
+    min-height: 355px !important;
+    max-height: 355px !important;
+    height: 355px !important;
+    right: 0;
+    border:dashed;
+}
+
+.mainPC {
+    min-height: 246px !important;
+    max-height: 246px !important;
+    height: 246px !important;
+}
+
+.canvasPC {
+    width:480px;
+    height:320px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+.canvas {
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin: auto;
+    width: 100%;
+    height: 100%;
+}
+
+.circle {
+    width: 50px;
+    height: 50px;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+    border-radius: 25px; 
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+}
+
+span {
+    font-style: italic;
+}
+
+.forecastElement{
+    float:left;
+    width: 20px;
+    height:20px;
+    line-height: 20px;
+    text-align: center;
+    box-sizing:border-box;
+    border-left:solid;
+    border-left-width:1px;
+    border-left-color: black;
+    border-top:solid;
+    border-top-width:1px;
+    border-top-color: black;
+    border-bottom: solid;
+    border-bottom-width: 1px;
+    border-bottom-color:black;
+    border-right: solid;
+    border-right-width: 1px;
+    border-right-color: black;
+    box-shadow: 2px 2px 2px  rgba(0, 0, 0, 0.1);
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+}
+
+.forecastTime{
+    font-size:10px;
+    text-align:center;
+    float:left;
+}

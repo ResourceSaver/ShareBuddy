@@ -1,0 +1,9 @@
+C:\Users\Dell\Desktop\Projects\WS\Rewarding\bin\Release\Rewarding.exe.config
+C:\Users\Dell\Desktop\Projects\WS\Rewarding\bin\Release\Rewarding.exe
+C:\Users\Dell\Desktop\Projects\WS\Rewarding\bin\Release\Rewarding.pdb
+C:\Users\Dell\Desktop\Projects\WS\Rewarding\bin\Release\WS.dll
+C:\Users\Dell\Desktop\Projects\WS\Rewarding\bin\Release\MySql.Data.dll
+C:\Users\Dell\Desktop\Projects\WS\Rewarding\bin\Release\WS.pdb
+C:\Users\Dell\Desktop\Projects\WS\Rewarding\obj\Release\Rewarding.csprojResolveAssemblyReference.cache
+C:\Users\Dell\Desktop\Projects\WS\Rewarding\obj\Release\Rewarding.exe
+C:\Users\Dell\Desktop\Projects\WS\Rewarding\obj\Release\Rewarding.pdb

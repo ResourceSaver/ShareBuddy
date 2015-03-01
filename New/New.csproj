@@ -1,0 +1,196 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <ProjectGuid>{E9306656-1F78-491C-B992-A91381E76737}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <OutputPath>bin</OutputPath>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+    <TypeScriptToolsVersion>1.0</TypeScriptToolsVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="Images\bee.png" />
+    <Content Include="Images\icons\android-chrome-192x192.png" />
+    <Content Include="Images\icons\apple-touch-icon-114x114.png" />
+    <Content Include="Images\icons\apple-touch-icon-120x120.png" />
+    <Content Include="Images\icons\apple-touch-icon-144x144.png" />
+    <Content Include="Images\icons\apple-touch-icon-152x152.png" />
+    <Content Include="Images\icons\apple-touch-icon-180x180.png" />
+    <Content Include="Images\icons\apple-touch-icon-57x57.png" />
+    <Content Include="Images\icons\apple-touch-icon-60x60.png" />
+    <Content Include="Images\icons\apple-touch-icon-72x72.png" />
+    <Content Include="Images\icons\apple-touch-icon-76x76.png" />
+    <Content Include="Images\icons\favicon-16x16.png" />
+    <Content Include="Images\icons\favicon-32x32.png" />
+    <Content Include="Images\icons\favicon-96x96.png" />
+    <Content Include="Images\icons\favicon.ico" />
+    <Content Include="Images\icons\largetile.png" />
+    <Content Include="Images\icons\mediumtile.png" />
+    <Content Include="Images\icons\smalltile.png" />
+    <Content Include="Images\icons\widetile.png" />
+    <Content Include="Other\app.css" />
+    <Content Include="Code\3rdparty\ath\imgs\action-icon-android.png" />
+    <Content Include="Code\3rdparty\ath\imgs\action-icon-ios6.png" />
+    <Content Include="Code\3rdparty\ath\imgs\action-icon-ios7.png" />
+    <Content Include="Code\3rdparty\ath\imgs\icon-152x152.png" />
+    <Content Include="Code\3rdparty\ath\imgs\icon-16x16.png" />
+    <Content Include="Code\3rdparty\ath\imgs\icon-196x196.png" />
+    <Content Include="Code\3rdparty\ath\imgs\icon.svg" />
+    <Content Include="Code\3rdparty\ath\src\addtohomescreen.js" />
+    <Content Include="Code\3rdparty\ath\style\addtohomescreen.css" />
+    <Content Include="Code\3rdparty\FrameRequest.js" />
+    <Content Include="Images\background.png" />
+    <Content Include="Images\bucket.png" />
+    <Content Include="Images\buddy.png" />
+    <Content Include="Images\circuit.png" />
+    <Content Include="Images\clouds1.png" />
+    <Content Include="Images\clouds2.png" />
+    <Content Include="Images\cookie.png" />
+    <Content Include="Images\drop.png" />
+    <Content Include="Images\eggs.png" />
+    <Content Include="Images\el.png" />
+    <Content Include="Images\event.png" />
+    <Content Include="Images\female.png" />
+    <Content Include="Images\green.png" />
+    <Content Include="Images\homescreen.png" />
+    <Content Include="Images\hour.png" />
+    <Content Include="Images\htpcur.png" />
+    <Content Include="Images\login.png" />
+    <Content Include="Images\medal.png" />
+    <Content Include="Images\medal6.png" />
+    <Content Include="Images\mole.png" />
+    <Content Include="Images\molebg.png" />
+    <Content Include="Images\moon.png" />
+    <Content Include="Images\network.png" />
+    <Content Include="Images\pan.png" />
+    <Content Include="Images\pet.png" />
+    <Content Include="Images\pile.png" />
+    <Content Include="Images\plate.png" />
+    <Content Include="Images\rain.png" />
+    <Content Include="Images\rainhto.png" />
+    <Content Include="Images\red.png" />
+    <Content Include="Images\score.png" />
+    <Content Include="Images\sun-icon.png" />
+    <Content Include="Images\tut\forecast.png" />
+    <Content Include="Images\tut\mini.png" />
+    <Content Include="Images\water.png" />
+    <Content Include="index.html" />
+    <Content Include="sbgame.pubxml.user" />
+    <Content Include="web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="WebService2.asmx" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Code\app.ts" />
+    <TypeScriptCompile Include="Code\3rdparty\jquerymobile.d.ts" />
+    <TypeScriptCompile Include="Code\Boot.ts" />
+    <TypeScriptCompile Include="Code\Resources.ts" />
+    <TypeScriptCompile Include="Code\Animation.ts" />
+    <TypeScriptCompile Include="Code\Connection.ts" />
+    <TypeScriptCompile Include="Code\enums.ts" />
+    <TypeScriptCompile Include="Code\3rdparty\jquery.d.ts" />
+    <TypeScriptCompile Include="Code\Userdata.ts" />
+    <TypeScriptCompile Include="Code\System.ts" />
+    <TypeScriptCompile Include="GameCode\Pages\ActionSelector.ts" />
+    <TypeScriptCompile Include="GameCode\Forecast.ts" />
+    <TypeScriptCompile Include="GameCode\Game.ts" />
+    <TypeScriptCompile Include="GameCode\Pages\Login.ts" />
+    <TypeScriptCompile Include="GameCode\Pages\MainScreen.ts" />
+    <TypeScriptCompile Include="GameCode\Pages\Minicast.ts" />
+    <TypeScriptCompile Include="GameCode\Pages\Minigame.ts" />
+    <TypeScriptCompile Include="GameCode\Pages\Pages.ts" />
+    <TypeScriptCompile Include="Code\Timer.ts" />
+    <TypeScriptCompile Include="GameCode\Minigames\Cooking.ts" />
+    <TypeScriptCompile Include="GameCode\Minigames\Pizza.ts" />
+    <TypeScriptCompile Include="GameCode\Minigames\RainingDrops.ts" />
+    <TypeScriptCompile Include="GameCode\Minigames\WhackAMole.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Code\3rdparty\ath\bower.json" />
+    <Content Include="Other\manifest.json" />
+    <None Include="Properties\PublishProfiles\sbdev.pubxml" />
+    <None Include="Properties\PublishProfiles\sbgame.pubxml" />
+    <Content Include="Other\sharebuddy.appcache" />
+    <None Include="sbgame.pubxml" />
+    <None Include="web.Debug.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
+    <None Include="web.Release.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="WebService\Controller.cs" />
+    <Compile Include="WebService\Logger.cs" />
+    <Compile Include="WebService2.asmx.cs">
+      <DependentUpon>WebService2.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Database\Database.csproj">
+      <Project>{898be97b-df22-4961-8160-cae9ea03d748}</Project>
+      <Name>Database</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RootNamespace>New</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>56753</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:56753/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+    <TypeScriptTarget>ES5</TypeScriptTarget>
+    <TypeScriptRemoveComments>false</TypeScriptRemoveComments>
+    <TypeScriptSourceMap>true</TypeScriptSourceMap>
+    <TypeScriptModuleKind>AMD</TypeScriptModuleKind>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <TypeScriptTarget>ES5</TypeScriptTarget>
+    <TypeScriptRemoveComments>true</TypeScriptRemoveComments>
+    <TypeScriptSourceMap>false</TypeScriptSourceMap>
+    <TypeScriptModuleKind>AMD</TypeScriptModuleKind>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>false</Optimize>
+  </PropertyGroup>
+  <Import Project="$(VSToolsPath)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(VSToolsPath)\TypeScript\Microsoft.TypeScript.targets')" />
+  <Import Project="..\packages\Microsoft.Web.WebJobs.Publish.1.0.0\tools\webjobs.targets" Condition="Exists('..\packages\Microsoft.Web.WebJobs.Publish.1.0.0\tools\webjobs.targets')" />
+</Project>

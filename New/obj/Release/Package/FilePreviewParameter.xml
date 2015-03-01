@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="sbgame" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\Users\\Dell\\Desktop\\Final\ Project\\PetRace\\New\\obj\\Release\\Package\\PackageTmp$" />
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^C:\\Users\\Dell\\Desktop\\Final\ Project\\PetRace\\New\\obj\\Release\\Package\\PackageTmp$" />
+  </parameter>
+  <parameter name="connstring-Web.config Connection String" description="" value="user id=;password=;server=.\SQLEXPRESS;Trusted_Connection=yes;database=petraceAVEo23k4T;connection timeout=30" tags="">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Dell\\Desktop\\Final\ Project\\PetRace\\New\\obj\\Release\\Package\\PackageTmp\\web\.config$" match="/configuration/connectionStrings/add[@name='connstring']/@connectionString" />
+  </parameter>
+</parameters>

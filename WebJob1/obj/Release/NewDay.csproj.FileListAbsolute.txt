@@ -1,0 +1,11 @@
+C:\Users\Dell\Desktop\Final Project\WS\WebJob1\bin\Release\WebJob1.exe.config
+C:\Users\Dell\Desktop\Final Project\WS\WebJob1\bin\Release\WebJob1.exe
+C:\Users\Dell\Desktop\Final Project\WS\WebJob1\bin\Release\WebJob1.pdb
+C:\Users\Dell\Desktop\Final Project\WS\WebJob1\bin\Release\Database.dll
+C:\Users\Dell\Desktop\Final Project\WS\WebJob1\bin\Release\Database.pdb
+C:\Users\Dell\Desktop\Final Project\WS\WebJob1\obj\Release\NewDay.csprojResolveAssemblyReference.cache
+C:\Users\Dell\Desktop\Final Project\WS\WebJob1\obj\Release\WebJob1.exe
+C:\Users\Dell\Desktop\Final Project\WS\WebJob1\obj\Release\WebJob1.pdb
+C:\Users\Dell\Desktop\ShareBuddy\WebJob1\bin\Release\WebJob1.exe.config
+C:\Users\Dell\Desktop\ShareBuddy\WebJob1\obj\Release\WebJob1.exe
+C:\Users\Dell\Desktop\ShareBuddy\WebJob1\obj\Release\WebJob1.pdb

@@ -1,0 +1,10 @@
+C:\Users\Dell\Desktop\Final Project\WS\Database\bin\Release\Database.dll.config
+C:\Users\Dell\Desktop\Final Project\WS\Database\bin\Release\Database.dll
+C:\Users\Dell\Desktop\Final Project\WS\Database\bin\Release\Database.pdb
+C:\Users\Dell\Desktop\Final Project\WS\Database\obj\Release\Database.dll
+C:\Users\Dell\Desktop\Final Project\WS\Database\obj\Release\Database.pdb
+C:\Users\Dell\Desktop\Final Project\PetRace\Database\bin\Release\Database.dll.config
+C:\Users\Dell\Desktop\Final Project\PetRace\Database\bin\Release\Database.dll
+C:\Users\Dell\Desktop\Final Project\PetRace\Database\bin\Release\Database.pdb
+C:\Users\Dell\Desktop\Final Project\PetRace\Database\obj\Release\Database.dll
+C:\Users\Dell\Desktop\Final Project\PetRace\Database\obj\Release\Database.pdb
