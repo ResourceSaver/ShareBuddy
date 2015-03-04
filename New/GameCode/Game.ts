@@ -74,16 +74,18 @@
         this.timer.stop();
         this.waitingfornewday.Show();
     }
-
-    public static MinigameCompleted(score: number, cancelled: boolean) {
-        System.GetUserData().PerformAction(this.actionSelector.GetSelectedAction(), score, cancelled);
+    
+    public static MinigameCompleted(score: number, cancelled: boolean, id: number) {
         this.SetMain();
+        System.GetUserData().UpdateActions(this.actionSelector.GetSelectedAction(), score);
+        System.GetConnection().PerformAction(this.actionSelector.GetSelectedAction(), score, cancelled, System.GetUserData().IsMore(), () => { Game.minigameresult.Show(score, id, Game.actionSelector.GetSelectedAction()); });
+    }
+
+    public static CloseMiniGameResult() {
         this.mainScreen.Show();
         this.mainScreen.ShowAnimation(this.actionSelector.GetSelectedAction());
     }
-
-    public static ShowMiniGameResult(score: number, cancelled: boolean, id: number) { Game.minigameresult.Show(score, cancelled, id, Game.actionSelector.GetSelectedAction()); }
-
+    
     public static ShowMinigame(actiontype) { this.minigame.StartGame(actiontype) }
 
     public static ShowLogin() { this.loginPage.Show(); }

@@ -12,7 +12,7 @@ class System {
     private static os: OS;
     private static ls: LocalStorageSB;
     private static loginCallback;
-    private version: string = "ShareBuddy v. 2.0.0.0";
+    private version: string = "ShareBuddy v. 2.1.0";
 
     public constructor() {
         $("#version").html(this.version);

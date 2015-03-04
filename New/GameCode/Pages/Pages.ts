@@ -228,20 +228,15 @@ class Tutorial {
 
 class MiniGameResult {
 
-    private cancelled: boolean;
     private score: number;
     private message: string;
 
     public constructor() {
-        $("#minigameresultbutton").bind('click', (score, cancelled) => Game.MinigameCompleted(this.score, this.cancelled));
+        $("#minigameresultbutton").bind('click', (score, cancelled) => Game.CloseMiniGameResult());
     }
 
-    public Show(score: number, cancelled: boolean, id: number, action:Action) {
-        this.cancelled = cancelled;
+    public Show(score: number,  id: number, action:Action) {
         this.score = score;
-
-        var oldScore = this.CheckHighScore(id, score);
-        $("#highscore").html("Your highscore: " + oldScore);
 
         $.mobile.changePage("#minigameresult", { changeHash: false, transition: transitions });
 
@@ -250,18 +245,6 @@ class MiniGameResult {
         $("#minigameresulttotal").html("<strong> Total " + (score + action.GetValue() + "</strong>"));
 
         Highscore.LoadHighscores(id);
-    }
-
-    public CheckHighScore(id: number, score: number): number {
-        var oldScore: number = +System.GetLocalStorage().Get("MG" + id.toString());
-
-        if (oldScore == null) oldScore = 0;
-
-        if (oldScore < score) {
-            System.GetLocalStorage().write("MG" + id.toString(), score.toString());
-        }
-
-        return oldScore;
     }
 }
 

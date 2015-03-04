@@ -63,14 +63,12 @@
         this.actions = new Actions(actionList);
     }
     
-    public PerformAction(action: Action, score: number, cancelled:boolean) {
+    public UpdateActions(action: Action, score: number) {
         this.score += action.GetValue() + action.GetBoosted() + score;
         this.water -= action.GetWater();
         this.electricity -= action.GetElectricity();
 
-        var moreOptions: boolean = this.actions.UpdateActions(action.GetType(), this.electricity, this.water);
-        System.GetConnection().PerformAction(action.GetId(), score, action.GetType(), cancelled, moreOptions);
-        this.more = moreOptions;
+        this.more = this.actions.UpdateActions(action.GetType(), this.electricity, this.water);
     }
 
     public GetActions() { return this.actions; }

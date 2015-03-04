@@ -16,7 +16,7 @@
         this.id = 3;
 
         this.finalLevel = 10;
-        this.allowedMisses = 10;
+        this.allowedMisses = 5;
 
         this.CreateBakers();
         this.pizzaPool = new PizzaPool(this.spacing, this, this.numberOfSlides);
@@ -50,11 +50,13 @@
     }
 
     public Miss() {
+        super.SpawnHandled();
         this.missedTotal++;
         Minigame.minigameHelper.UpdateMissedBox();
     }
 
     public Hit(points: number) {
+        super.SpawnHandled();
         this.score += points;
         Minigame.minigameHelper.WritePoints(this.score);
     }
@@ -102,14 +104,14 @@
 
     public Act() {
 
-        var gameOver = this.SpawnIfReady();
+        this.SpawnIfReady();
 
         if (this.down) this.MovePad();
         this.pizzaPool.Act();
 
         if (this.missedTotal == this.allowedMisses) return true;
 
-        return gameOver;
+        return this.gameOver;
     }
 
     public Spawn() {

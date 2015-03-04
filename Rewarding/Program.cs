@@ -1,6 +1,5 @@
 ﻿using Database.Code;
 using Live;
-using Live.Code;
 using System;
 using System.Collections.Generic;
 
@@ -15,7 +14,6 @@ namespace UsageHistory
 
         static void Main()
         {
-            string today = SystemTime.TodayReal();
             string yesterday = SystemTime.YesterdayReal();
             int dayofweekYesterday = SystemTime.GetDayOfWeekYesterday();
             ecc.SetForecast(conn.GetForecast(yesterday));
@@ -44,7 +42,7 @@ namespace UsageHistory
                 }
 
                 conn.AdjustShifting(user.username, ed);
-                conn.LogUsage(user.username, today, water, waterBaseline, ed);
+                conn.LogUsage(user.username, SystemTime.TodayReal(), water, waterBaseline, ed);
             }
         }
     }

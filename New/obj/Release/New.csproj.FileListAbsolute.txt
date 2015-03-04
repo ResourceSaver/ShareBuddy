@@ -30,3 +30,11 @@ C:\Users\Dell\Desktop\Final Project\PetRace\New\bin\Database.pdb
 C:\Users\Dell\Desktop\Final Project\PetRace\New\obj\Release\New.csprojResolveAssemblyReference.cache
 C:\Users\Dell\Desktop\Final Project\PetRace\New\obj\Release\New.dll
 C:\Users\Dell\Desktop\Final Project\PetRace\New\obj\Release\New.pdb
+C:\Users\Dell\Documents\ShareBuddy\New\bin\New.dll.config
+C:\Users\Dell\Documents\ShareBuddy\New\bin\New.dll
+C:\Users\Dell\Documents\ShareBuddy\New\bin\New.pdb
+C:\Users\Dell\Documents\ShareBuddy\New\bin\Database.dll
+C:\Users\Dell\Documents\ShareBuddy\New\bin\Database.pdb
+C:\Users\Dell\Documents\ShareBuddy\New\obj\Release\New.csprojResolveAssemblyReference.cache
+C:\Users\Dell\Documents\ShareBuddy\New\obj\Release\New.dll
+C:\Users\Dell\Documents\ShareBuddy\New\obj\Release\New.pdb

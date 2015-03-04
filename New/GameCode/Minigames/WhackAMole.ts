@@ -13,23 +13,23 @@
         this.backgroundImage = images.molebg;
         this.moleSpaceY = Math.round(System.CanvasHeight / this.numberOfMoles); // 3 = number of moles
         this.moleSpaceX = Math.round(System.CanvasWidth / this.numberOfMoles);
-        this.piles = new NonAnimation(Minigame.textContext, this.moleSpaceY, this.moleSpaceX);
+        this.piles = new NonAnimation(Minigame.mid3Context, this.moleSpaceY, this.moleSpaceX);
         this.id = 4;
 
         this.finalLevel = 10;
-        this.molesAllowedToMiss = 10;
+        this.molesAllowedToMiss = 5;
 
         this.moles = new Array(3); // 3 = number of moles
         this.CreateMoles();
     }
 
     public Start() {
-        super.Start(20, 1);
+        super.Start(45, 1 );
         System.GetGesture().Subscribe(this);
         this.piles.Draw();
-        this.moleAliveDuration = 800;
+        this.moleAliveDuration = 400;
 
-        this.toSpawnPerLevel = 10;
+        this.toSpawnPerLevel = 15;
 
         // reset moles
         for (var i = 0; i < this.numberOfMoles; i++) {
@@ -78,18 +78,21 @@
         if (this.moles[y][x].Hit()) {
             if (this.moles[y][x].IsMole()) {
                 this.score++;
+                super.SpawnHandled();
                 Minigame.minigameHelper.WritePoints(this.score);
             }
             else { // player clicked bomb
                 this.missedTotal++;
+                super.SpawnHandled();
                 Minigame.minigameHelper.UpdateMissedBox();
             }
         }
     }
 
     public Act() {
+        if (this.missedTotal == this.molesAllowedToMiss) return true;
 
-        var gameOver: boolean = this.SpawnIfReady(); // spawns if time, return true if final level is reached
+        this.SpawnIfReady(); // spawns if time, return true if final level is reached
 
         for (var i = 0; i < this.numberOfMoles; i++) {
             for (var j = 0; j < this.numberOfMoles; j++) {
@@ -97,14 +100,14 @@
                     if (this.moles[i][j].IsMole()) {
                         this.missedTotal++;
                         Minigame.minigameHelper.UpdateMissedBox();
-
-                        if (this.missedTotal == this.molesAllowedToMiss) return true;
                     }
+
+                    super.SpawnHandled();
                 }
             }
         }
 
-        return gameOver;
+        return this.gameOver;
     }
 
     public GetId() { return this.id; }
@@ -176,7 +179,8 @@ class Mole {
         }
         
         this.state = MoleState.APPEARING;
-        return (this.isMole);
+        return true;
+        //return (this.isMole);
     }
 
     public IsMole() { return this.isMole; }

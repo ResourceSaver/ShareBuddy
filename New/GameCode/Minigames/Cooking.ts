@@ -20,12 +20,12 @@
         this.spacingX = System.CanvasWidth / (this.panSize + 1);
         this.spacingY = System.CanvasHeight / (this.panSize);
 
-        this.allowedMisses = 10;
-        this.finalLevel = 3;
+        this.allowedMisses = 5;
+        this.finalLevel = 5;
     }
 
     public Start() {
-        super.Start(90, 90);
+        super.Start(250, 80);
 
         this.toSpawnPerLevel = 5;
 
@@ -71,20 +71,22 @@
         if (x1 >= this.panSize || x1 < 0 || y1 >= this.panSize || y1 < 0)
             return;
 
+
         var point = this.foods[x1][y1].Click();
 
         if (point >= 0) {
             this.score += point;
             Minigame.minigameHelper.WritePoints(this.score);
             Minigame.minigameHelper.WriteTempText(point);
+            super.SpawnHandled();
         }
     }
 
     public Act() {
-        var gameOver = this.SpawnIfReady();
+        this.SpawnIfReady();
         this.Draw();
         if (this.missedTotal == this.allowedMisses) return true;
-        return gameOver;
+        return this.gameOver;
     }
       
     public Spawn() {
@@ -106,9 +108,8 @@
             for (var j = 0; j < this.panSize; j++) {
                 var food: Food = this.foods[i][j];
 
-                var missed: boolean = food.Draw();
-
-                if (missed) {
+                if (food.Draw()) {
+                    super.SpawnHandled();
                     Minigame.minigameHelper.UpdateMissedBox();
                     this.missedTotal++;
                 }

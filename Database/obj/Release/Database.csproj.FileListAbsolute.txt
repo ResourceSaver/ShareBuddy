@@ -8,3 +8,7 @@ C:\Users\Dell\Desktop\Final Project\PetRace\Database\bin\Release\Database.dll
 C:\Users\Dell\Desktop\Final Project\PetRace\Database\bin\Release\Database.pdb
 C:\Users\Dell\Desktop\Final Project\PetRace\Database\obj\Release\Database.dll
 C:\Users\Dell\Desktop\Final Project\PetRace\Database\obj\Release\Database.pdb
+C:\Users\Dell\Documents\ShareBuddy\Database\bin\Release\Database.dll
+C:\Users\Dell\Documents\ShareBuddy\Database\bin\Release\Database.pdb
+C:\Users\Dell\Documents\ShareBuddy\Database\obj\Release\Database.dll
+C:\Users\Dell\Documents\ShareBuddy\Database\obj\Release\Database.pdb

@@ -22,9 +22,9 @@ class Connection {
 
     public GetRanking(callback) { Ajax("GetRanking", '{"username":"' + this.username + '"}', callback); }
 
-    public PerformAction(id: number, minigamescore: number, type:string, cancelled:boolean, moreOptions:boolean) {
-        var arr = '{"username":"' + this.username + '","password":"' + this.password + '","actionid":"' + id + '","minigamescore":"' + minigamescore + '","type":"' + type + '","cancelled":"' + cancelled +  '","exhausted":"' + moreOptions + '"}';
-        Ajax("CompleteAction", arr, () => { });
+    public PerformAction(action:Action, minigamescore: number, cancelled:boolean, moreOptions:boolean, callback) {
+        var arr = '{"username":"' + this.username + '","password":"' + this.password + '","actionid":"' + action.GetId() + '","minigamescore":"' + minigamescore + '","type":"' + action.GetType() + '","cancelled":"' + cancelled + '","exhausted":"' + moreOptions + '"}';
+        Ajax("CompleteAction", arr, callback);
     }
 
     public Gethighscore(minigameid:number, callback) {

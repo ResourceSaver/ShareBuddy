@@ -10,7 +10,7 @@
         this.id = 2;
 
         this.finalLevel = 10;
-        this.allowedMisses = 10;
+        this.allowedMisses = 5;
 
         this.bucket = new Frog(Minigame.mid1Context);
         this.bee = new Bee(this.bucket);
@@ -18,7 +18,7 @@
     }
 
     public Start() {
-        super.Start(50, 1);
+        super.Start(50, 30);
         System.GetGesture().Subscribe(this);
         Minigame.minigameHelper.SetButtonLocation(System.CanvasWidth - 110, 5, "Shoot");
         this.toSpawnPerLevel = 10;
@@ -29,26 +29,21 @@
         Minigame.minigameHelper.Reset(this.allowedMisses, true);
     }
 
-    private gameOver = false;
-
     public Act() {
-        if (this.SpawnIfReady())
-            return true;
-        
+        this.SpawnIfReady();
         this.bucket.Act();
         this.cookies.Draw();
         this.bee.Act();
 
         if (this.bucket.GetX2() - 28 > this.bee.GetX() && this.bucket.GetX() + 28 < this.bee.GetX2() && this.bee.GetY2() - 15 > this.bucket.GetY()) {
+            this.bucket.Freeze();
             this.gameOver = true;
         }
 
-        if (this.missedTotal == this.allowedMisses) this.gameOver  = true;
-
-        if (this.gameOver ) {
+        if (this.missedTotal == this.allowedMisses) {
             this.bucket.Freeze();
+            this.gameOver = true;
         }
-
 
         return this.gameOver ;
     }
@@ -62,13 +57,13 @@
     public Hit(points: number) {
         this.score += points
         Minigame.minigameHelper.WritePoints(this.score);
-
+        super.SpawnHandled();
         if (this.score >= 3) {
             Minigame.minigameHelper.ShowButton();
         }
     }
 
-    public Miss() {
+    public Miss() { // hit by lightning
         this.missedTotal++;
         Minigame.minigameHelper.UpdateMissedBox();
     }
@@ -195,19 +190,18 @@ class Clouds {
     private x: number;
     private y: number;
     private picture: SingleImage;
-    private static resetX: number;
+    //private static resetX: number;
     private static drawWhen: number;
     private drawCount: number;
     private drawCounter2: number = 0;
-
-
+    
     public constructor(image: HTMLImageElement, x: number, y: number, canvas:CanvasRenderingContext2D) {
         this.x = x;
         this.y = y;
         this.picture = new SingleImage(canvas, image, image.height, image.width);
         this.drawCount = 0;
         Clouds.drawWhen = 4;
-        Clouds.resetX = System.CanvasWidth + (System.CanvasWidth / 2);
+        //Clouds.resetX = System.CanvasWidth + (System.CanvasWidth / 2);
     }
 
     public Act() {
@@ -225,7 +219,7 @@ class Clouds {
 
     private Move() {
         if (this.x + this.picture.GetWidth() < 0)
-            this.x = Clouds.resetX;
+            this.x = System.CanvasWidth;
 
         this.x -= 1;
     }
@@ -432,7 +426,7 @@ class DropPool {
     private maxSize: number = 10;
     private catcher: RainingDrops;
     private cloud1: Clouds;
-    private cloud2: Clouds;
+    //private cloud2: Clouds;
     private bucket: Frog;
     private bee: Bee;
 
@@ -445,7 +439,7 @@ class DropPool {
         this.bucket = bucket;
         this.bee = bee;
         this.cloud1 = new Clouds(images.clouds1, 0, -60, canvas2);
-        this.cloud2 = new Clouds(images.clouds2, System.CanvasWidth, -30, canvas2);
+        //this.cloud2 = new Clouds(images.clouds2, System.CanvasWidth, -30, canvas2);
         this.catcher = catcher;
         this.drops = new Array(this.maxSize);
         var animationData: AnimationData = new AnimationData(images.drop, canvas, 4, 3);
@@ -462,55 +456,49 @@ class DropPool {
     }
 
     private ran: number = Math.random();
+    private  speed = 2;
 
     public Spawn() {
         if (this.drops[this.maxSize].IsAlive()) return false;
 
-        var direction: number = (Math.random() * 4 - 2);
-        var spawned: boolean = false;
-
-        var speed = 2;
-
+        var direction: number = Math.floor((Math.random() - 0.5) * 10);
         this.ran = Math.random();
-
         var x = Math.round(System.CanvasWidth * this.ran);
 
-        if (this.ran < 0.05) {
-            this.drops[this.maxSize].Spawn(x, 0, speed, CookieType.BIGRAIN, direction);
-            spawned = true;
+        if (this.ran < 0.05) { // RAIN SPAWN
+            this.drops[this.maxSize].Spawn(x, 0, this.speed, CookieType.BIGRAIN, direction);
             this.drops.unshift(this.drops.pop());
-
+            return true;
         }
-        else if (this.ran < 0.6) {
-            this.drops[this.maxSize].Spawn(x, 0, speed, CookieType.RAIN, direction);
-            spawned = true;
+        else if (this.ran < 0.5) { // RAIN SPAWN
+            this.drops[this.maxSize].Spawn(x, 0, this.speed, CookieType.RAIN, direction);
             this.drops.unshift(this.drops.pop());
-
+            return true;
         }
         else if (!this.bee.IsHit()) {
-            this.drops[this.maxSize].Spawn(this.bee.GetX(), this.bee.GetY(), speed, CookieType.LIGHTNING, direction);
+            this.drops[this.maxSize].Spawn(this.bee.GetX(), this.bee.GetY(), this.speed, CookieType.LIGHTNING, direction);
             this.drops.unshift(this.drops.pop());
+            return false;
         }
-        else {
-            this.drops[this.maxSize].Spawn(x, 0, speed, CookieType.RAIN, direction);
-            spawned = true;
+        else { // RAIN SPAWN
+            this.drops[this.maxSize].Spawn(x, 0, this.speed, CookieType.RAIN, direction);
             this.drops.unshift(this.drops.pop());
+            return true;
         }
 
-        return spawned;
+        return false;
     }
 
     public Draw() {
         this.cloud1.Act();
-        this.cloud2.Act();
+        //this.cloud2.Act();
 
         for (var i = 0; i <= this.maxSize; i++) {
             if (!this.drops[i].IsAlive())
                 break;
             if (!this.drops[i].Draw()) { // missed
-                //if (this.drops[i].GetTypes() == CookieType.LIGHTNING) {
-                //    this.catcher.Miss();
-                //}
+                if (this.drops[i].GetTypes() == CookieType.BIGRAIN ||this.drops[i].GetTypes() == CookieType.RAIN)
+                    this.catcher.Hit(0);
                 this.RemoveCookie(i);
             }
             else if (this.drops[i].GetTypes() == CookieType.FIRE && this.CheckCollision2(this.drops[i])) {
@@ -531,26 +519,18 @@ class DropPool {
                     this.bucket.Wetten();
                     this.catcher.Hit(5);
                 }
-                //else if (this.drops[i].GetTypes() == CookieType.LIGHTNING) {
-                //    this.catcher.Miss();
-                //    this.bucket.Freeze();
-                //}
+
                 this.RemoveCookie(i);
             }
         }
     }
     private CheckCollision3(cookie: Drop) {
-        //if (!cookie.IsAlive()) return false;
-
         return (cookie.GetX2() >= this.bucket.GetX() + 25 && cookie.GetX() <= this.bucket.GetX2() - 25 && cookie.GetY2() >= this.bucket.GetY() + 10 && cookie.GetY() <= this.bucket.GetY2() );
     }
     private CheckCollision2(cookie: Drop) {
-        //if (!cookie.IsAlive()) return false;
         return (cookie.GetX2() >= this.bee.GetX() && cookie.GetX() <= this.bee.GetX2() && cookie.GetY2() >= this.bee.GetY() && cookie.GetY() <= this.bee.GetY2());
     }
     private CheckCollision(cookie: Drop) {
-        //if (!cookie.IsAlive()) return false;
-
         return (cookie.GetX2() >= this.bucket.GetX() && cookie.GetX() <= this.bucket.GetX2() && cookie.GetY2() >= this.bucket.GetY() && cookie.GetY() <= this.bucket.GetY2());
     }
 

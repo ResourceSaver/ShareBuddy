@@ -179,17 +179,20 @@ namespace Database.Code
                 minigameid = 2;
             }
                         
-
-
             if (this.OpenConnection())
             {
-                SqlCommand cmd = new SqlCommand(query, connection);
-                cmd.Parameters.Add(new SqlParameter("username", username));
-                cmd.Parameters.Add(new SqlParameter("minigameid", minigameid));
-                cmd.Parameters.Add(new SqlParameter("score", score));
-                cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                cmd.ExecuteNonQuery();
-
+                try
+                {
+                    SqlCommand cmd = new SqlCommand(query, connection);
+                    cmd.Parameters.Add(new SqlParameter("username", username));
+                    cmd.Parameters.Add(new SqlParameter("minigameid", minigameid));
+                    cmd.Parameters.Add(new SqlParameter("score", score));
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.ExecuteNonQuery();
+                }
+                catch (Exception e)
+                {
+                }
                 this.CloseConnection();
             }
         }

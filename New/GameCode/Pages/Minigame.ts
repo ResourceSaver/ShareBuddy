@@ -50,9 +50,7 @@
         Minigame.mid3Context.canvas.style.width = System.GetGW() + "px";
         Minigame.mid3Context.canvas.style.height = System.GetGH() + "px";
 
-
         Minigame.minigameHelper = new MiniGameHelper(Minigame.textContext);
-
 
         this.whackAMole = new WhackAMole();
         this.frogger = new RainingDrops();
@@ -105,9 +103,9 @@
         Game.SetMain();
 
         if (pause)
-            setTimeout(() => { Game.ShowMiniGameResult(this.selectedMiniGame.GetScore(), cancelled, this.selectedMiniGame.GetId()); }, 2000);
+            setTimeout(() => { Game.MinigameCompleted(this.selectedMiniGame.GetScore(), cancelled, this.selectedMiniGame.GetId()); }, 2000);
         else 
-            Game.ShowMiniGameResult(this.selectedMiniGame.GetScore(), cancelled, this.selectedMiniGame.GetId()); 
+            Game.MinigameCompleted(this.selectedMiniGame.GetScore(), cancelled, this.selectedMiniGame.GetId()); 
     }
 } 
 
@@ -146,7 +144,7 @@ class MiniGameHelper {
 
     private WriteText(text: string, x: number, y: number, color: string, fontsize = 14) {
         Minigame.textContext.clearRect(x, y - 15, 70, 50);
-        Minigame.textContext.font = "bold " + fontsize + "px Trebuchet MS";
+        Minigame.textContext.font = "bold " + fontsize + "px Comic Sans MS";
         Minigame.textContext.fillStyle = "black";
         Minigame.textContext.fillText(text, x + 1, y + 1, 100);
         Minigame.textContext.fillStyle = color;
@@ -165,16 +163,31 @@ class MiniGameHelper {
 
         this.WriteText("+" + points, x, y, 'green', 50);
 
-        this.timeout = setTimeout(() => { Minigame.textContext.clearRect(x, y - 50, 70, 50); }, 3000);
+        this.timeout = setTimeout(() => { Minigame.textContext.clearRect(x, y - 50, 70, 70); }, 3000);
     }
 
     public WritePoints(score: number) {
         this.WriteText("Points " + score, 270, 15, "white");
     }
+
     public WriteLevel(level: number) {
         this.WriteText("Level " + level, 185, 15, "white");
     }
 
+    public WriteLevelBig(text:string) {
+        var x = 145;
+        var y = 180;
+
+       Minigame.textContext.font = "bold " + 60 + "px Comic Sans MS";
+        Minigame.textContext.fillStyle = "black";
+        Minigame.textContext.fillText(text, x + 3, y + 3, 200);
+        Minigame.textContext.fillStyle = "White";
+        Minigame.textContext.fillText(text, x, y, 200);
+    }
+
+    public ClearTExt() {
+        Minigame.textContext.clearRect(145, 180 - 80, 210, 210);
+    }
 }
 
 interface IMiniGame {
@@ -207,7 +220,14 @@ class SuperMini {
     public currentLevel: number;
     public finalLevel: number;
 
+    private gamePaused;
+
+    public gameOver: boolean;
+
     public SpawnIfReady() {
+
+        if (this.gamePaused) return;
+        
         this.currentSpawnSpeedCounter++;
 
         if (this.currentSpawnSpeedCounter > this.currentSpawnSpeed && Math.random() > 0.8) {
@@ -215,16 +235,22 @@ class SuperMini {
             this.currentSpawnSpeedCounter = 0;
             
             if (this.spawnedThisLevel == this.toSpawnPerLevel) { // LEVEL UP
+                this.gamePaused = true;
                 this.currentSpawnSpeed -= this.spawnSpeedIncrease;
                 this.spawnedThisLevel = 0;
-                this.currentLevel++;
-                Minigame.minigameHelper.WriteLevel(this.currentLevel);
-
-                if (this.currentLevel == this.finalLevel) return true;
             }
         }
+    }
 
-        return false;
+    private handledSpawns: number = 0;
+
+    public SpawnHandled() {
+        this.handledSpawns++;
+
+        if (this.handledSpawns == this.toSpawnPerLevel) {
+            this.handledSpawns = 0;
+            this.StartNextLevel();
+        }
     }
 
     public Spawn() {
@@ -238,13 +264,39 @@ class SuperMini {
         this.toSpawnPerLevel = spawnSpeedEnd;
         this.spawnSpeedIncrease = Math.floor(((spawnSpeedStart - spawnSpeedEnd) / (this.finalLevel - 2)));
         this.score = 0;
-        this.currentLevel = 1;
+        this.currentLevel = 0;
         this.currentSpawnSpeedCounter = 0;
         this.spawnedTotal = 0;
         this.spawnedThisLevel = 0;
         this.missedTotal = 0;
-
+        this.handledSpawns = 0;
+        this.gameOver = false;
         Minigame.backgroundContext.drawImage(this.backgroundImage, 0, 0, this.backgroundImage.width, this.backgroundImage.height, 0, 0, System.CanvasWidth, System.CanvasHeight);
+        this.gamePaused = true;
+        this.StartNextLevel();
+    }
+
+    private StartNextLevel() {
+
+        this.currentLevel++;
+
+        if (this.currentLevel == this.finalLevel) {
+            Minigame.minigameHelper.WriteLevelBig("Final Level");
+            Minigame.minigameHelper.WriteLevel(this.currentLevel);
+        }
+        else if (this.currentLevel > this.finalLevel) {
+            this.gameOver = true;
+            Minigame.minigameHelper.WriteLevelBig("You won!");
+        }
+        else {
+            Minigame.minigameHelper.WriteLevelBig("Level " + this.currentLevel);
+            Minigame.minigameHelper.WriteLevel(this.currentLevel);
+        }
+
+        setTimeout(() => {
+            this.gamePaused = false;
+            Minigame.minigameHelper.ClearTExt();
+        }, 1100);
     }
 }
 
