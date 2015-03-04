@@ -13,4 +13,3 @@ C:\Users\Dell\Desktop\Final Project\WS\Forecast\obj\Release\Forecast.pdb
 C:\Users\Dell\Desktop\ShareBuddy\Forecast\bin\Release\Forecast.exe.config
 C:\Users\Dell\Desktop\ShareBuddy\Forecast\obj\Release\Forecast.exe
 C:\Users\Dell\Desktop\ShareBuddy\Forecast\obj\Release\Forecast.pdb
-C:\Users\Dell\Documents\ShareBuddy\Forecast\bin\Release\Forecast.exe.config

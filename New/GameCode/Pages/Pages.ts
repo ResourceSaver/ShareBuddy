@@ -9,6 +9,7 @@
             System.GetUserData().SetBuddyName(System.GetUserData().GetBuddyName().charAt(0).toUpperCase() + System.GetUserData().GetBuddyName().slice(1));
             $(".buddyName").html("<strong>" + System.GetUserData().GetBuddyName() + "</strong>");
         }
+
     }
 
     private EnableNextButton() {
@@ -25,7 +26,23 @@
     }
 
     public Show() {
+        System.GetConnection().GetRanking((userList) => this.UserListReady(userList));
+    }
+
+    public UserListReady(userList) {
+        console.log(userList);
+
+        var selectMenu = $("#select-choice-1");
+
+        $.each(userList, function (key, value) {
+            selectMenu.append($("<option/>", {
+                value: key,
+                text: value['username']
+            }));
+        });
+
         $.mobile.changePage("#setname", { changeHash: false, transition: transitions });
+
     }
 
     private keyPress(event: KeyboardEvent) {
@@ -58,7 +75,7 @@
         this.bussy = true;
         var label: HTMLInputElement = <HTMLInputElement> document.getElementById("petname");
         var male: boolean = $("#male").is(":checked");
-        System.GetConnection().SetPetName(label.value, male, (r) => this.setnameCallback(r));
+        System.GetConnection().SetPetName(label.value, male, (r) => this.setnameCallback(r), $("#select-choice-1 option:selected").text());
         System.GetUserData().SetBuddyName(label.value.charAt(0).toUpperCase() + label.value.slice(1));
         System.GetUserData().SetMale(male);
         $(".buddyName").html("<strong>" + System.GetUserData().GetBuddyName() + "</strong>");
@@ -231,6 +248,8 @@ class MiniGameResult {
         $("#minigamescore").text(score.toString());
         $("#activityValue").text(action.GetValue().toString());
         $("#minigameresulttotal").html("<strong> Total " + (score + action.GetValue() + "</strong>"));
+
+        Highscore.LoadHighscores(id);
     }
 
     public CheckHighScore(id: number, score: number): number {
@@ -338,6 +357,7 @@ class Offline {
     public constructor() {
         $("#forecastO").hide();
         $("#rankingO").hide();
+        $("#highscoresO").on("click", () => { Game.ShowHighScores(); } );
         $("#forecastButtonO").on("click", () => { $("#messageO").hide(); $("#forecastO").show(); $("#rankingO").hide(); });
         $("#rankingButtonO").on("click", () => { $("#messageO").hide(); $("#forecastO").hide(); $("#rankingO").show(); System.GetConnection().GetRanking((val) => this.RankingReady(val)); });
         $("#frontButtonO").on("click", () => { $("#messageO").show(); $("#forecastO").hide(); $("#rankingO").hide(); });
@@ -385,6 +405,7 @@ class Offline {
 class Ranking {
     public constructor() {
         $('#rankingButton').on('click', () => Game.ShowRankingPage());
+        $('#minigamesHighscores').on('click', () => { Game.ShowHighScores(); });
         $("#closeRankButton").bind("click", () => Game.ChangePage());
     }
 
@@ -438,6 +459,24 @@ class Ranking {
         }
     }
 } 
+
+class Highscores {
+
+    public constructor() {
+        
+        $("#hsbackbutton").on('click', () => { Game.ChangePage() });
+        $("#cookingHS").on('click', () => { Highscore.LoadHighscores(1); });
+        $("#frogHS").on('click', () => { Highscore.LoadHighscores(2); });
+        $("#currentHS").on('click', () => { Highscore.LoadHighscores(3); });
+        $("#whackHS").on('click', () => { Highscore.LoadHighscores(4); });
+    }
+
+    public show() {
+        $("#cookingHS").addClass('ui-btn-active');
+        $("#cookingHS").click();
+        $.mobile.changePage("#highscoresPage", { changeHash: false, transition: transitions });
+    }
+}
 
 class RankingOverLay {
 

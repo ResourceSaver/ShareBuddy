@@ -176,7 +176,9 @@ namespace Live
 
         public static List<int> GetForecast(string date)
         {
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create( urlMaster + ":3901/co2forecast/" + date.Replace('-', '/'));
+            string url = urlMaster + ":3901/co2forecast/" + date.Replace('-', '/');
+
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
             request.Timeout = timeout;
             try
             {

@@ -42,6 +42,13 @@ namespace Database.Code
         public string name { get; set; }
         public int score { get; set; }
         public bool king { get; set; }
+        public string username { get; set; }
+    }
+
+    public class Highscore
+    {
+        public string buddyname { get; set; }
+        public int score { get; set; }
     }
 
     public class Rewards

@@ -38,7 +38,8 @@ namespace UsageHistory
                     waterBaseline = Math.Round(waterBaseline, 0);
                     water = Math.Round(waterObj.deltaValue, 0);
                 }
-                else { 
+                else
+                {
                     waterBaseline = 0;
                 }
 

@@ -99,7 +99,7 @@ namespace Database.Code
         }
 
         // LOG VALUES
-
+        
         public void LogUsage(string username, string date, double water, double waterbaseline, ElectricityData ed)
         {
             string usage24str = "";
@@ -157,6 +157,43 @@ namespace Database.Code
             return retVal;
         }
 
+        public void UpdateHighScore(string username, int activityid, int score)
+        {
+            string query = "UpdateHighscore";
+            int minigameid = -1;
+
+            if (activityid < 4)
+            {
+                minigameid = 1;
+            }
+            else if (activityid < 7)
+            {
+                minigameid = 3;
+            }
+            else if (activityid < 10)
+            {
+                minigameid = 4;
+            }
+            else if (activityid < 13)
+            {
+                minigameid = 2;
+            }
+                        
+
+
+            if (this.OpenConnection())
+            {
+                SqlCommand cmd = new SqlCommand(query, connection);
+                cmd.Parameters.Add(new SqlParameter("username", username));
+                cmd.Parameters.Add(new SqlParameter("minigameid", minigameid));
+                cmd.Parameters.Add(new SqlParameter("score", score));
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                cmd.ExecuteNonQuery();
+
+                this.CloseConnection();
+            }
+        }
+
         public void LogEvents(string date)
         {
             if (this.OpenConnection())
@@ -168,8 +205,34 @@ namespace Database.Code
                 this.CloseConnection();
             }
         }
-        
+
+        public void RewardReferral(string referrer, string referree)
+        {
+            NQ("UPDATE users SET score = score + 300 WHERE username = '" + referrer + "';");
+            NQ("UPDATE users SET score = score + 450 WHERE username = '" + referree + "';");
+        }
+
         // GET VALUES
+
+        public List<Highscore> GetMiniGameHighscore(int minigameid)
+        {
+            List<Highscore> highscorelist = new List<Highscore>();
+
+            if (Q("SELECT TOP(5) * FROM dbo.highscores WHERE minigameid = " + minigameid + " ORDER BY highscore desc "))
+            {
+                while (reader.Read())
+                {
+                    Highscore highscore = new Highscore();
+                    highscore.score = (int) reader["highscore"];
+                    highscore.buddyname = reader["username"].ToString();
+                    highscorelist.Add(highscore);
+                }
+            }
+
+            Close();
+
+            return highscorelist;
+        }
 
         public Usage GetUsage(string username, string date)
         {
@@ -347,7 +410,7 @@ namespace Database.Code
         {
             List<Ranking> ranking = new List<Ranking>();
 
-            if (Q("SELECT pet,score,shifting FROM  users WHERE pet != '' ORDER BY score DESC"))
+            if (Q("SELECT username,pet,score,shifting FROM  users WHERE pet != '' ORDER BY score DESC"))
             {
                 int count = 0;
                 int king = -1;
@@ -358,6 +421,7 @@ namespace Database.Code
                     Ranking userdata = new Ranking();
                     userdata.score = (int)reader["score"];
                     userdata.name = reader["pet"].ToString();
+                    userdata.username = reader["username"].ToString();
 
                     double shifting = Convert.ToDouble(reader["shifting"]);
                     if (shifting > maxShifting)

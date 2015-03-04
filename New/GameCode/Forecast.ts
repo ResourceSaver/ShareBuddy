@@ -279,3 +279,36 @@ class Day {
         return Day.weekday[d.getDay()];
     }
 }
+
+class Highscore {
+
+    private static data;
+
+    public static LoadHighscores(id: number) {
+        System.GetConnection().Gethighscore(id, (data) => this.LoadHighscoresCB(data));
+    }
+
+    private static LoadHighscoresCB(data) {
+        this.data = data;
+        this.Make();
+    }
+
+    public static Make() {
+        $(".hightable tr").remove();
+        //$(".hightable").table("refresh");
+
+        var html: string = "<tr class=\"ui - bar - d\" ><th data - priority = \"2\" > User </th > <th data - priority = \"1\" > Score </th >< / tr>";
+
+        for (var i = 0; i < this.data.length; i++) {
+            var o = this.data[i];
+
+            html = html + "<tr>";
+            html = html + "<td>" + o["buddyname"] + "</td>";
+            html = html + "<td>" + o["score"] + "</td>";
+            html = html + "</tr>";
+        }
+
+        $(".hightable > tbody").append(html);
+        //$(".hightable").table("refresh");
+    }
+}

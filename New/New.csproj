@@ -83,7 +83,6 @@
     <Content Include="Images\tut\mini.png" />
     <Content Include="Images\water.png" />
     <Content Include="index.html" />
-    <Content Include="sbgame.pubxml.user" />
     <Content Include="web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -193,4 +192,7 @@
   </PropertyGroup>
   <Import Project="$(VSToolsPath)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(VSToolsPath)\TypeScript\Microsoft.TypeScript.targets')" />
   <Import Project="..\packages\Microsoft.Web.WebJobs.Publish.1.0.0\tools\webjobs.targets" Condition="Exists('..\packages\Microsoft.Web.WebJobs.Publish.1.0.0\tools\webjobs.targets')" />
+  <PropertyGroup>
+    <PostBuildEvent>$(SolutionDir)New\Other\PostBuild.exe</PostBuildEvent>
+  </PropertyGroup>
 </Project>

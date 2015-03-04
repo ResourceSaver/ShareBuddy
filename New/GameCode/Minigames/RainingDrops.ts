@@ -7,7 +7,7 @@
     constructor() {
         super();
         this.backgroundImage = images.rainbg;
-        this.id = 3;
+        this.id = 2;
 
         this.finalLevel = 10;
         this.allowedMisses = 10;
@@ -20,7 +20,7 @@
     public Start() {
         super.Start(50, 1);
         System.GetGesture().Subscribe(this);
-        Minigame.minigameHelper.SetButtonLocation(System.CanvasWidth - 110, System.CanvasHeight - 70, "Shoot");
+        Minigame.minigameHelper.SetButtonLocation(System.CanvasWidth - 110, 5, "Shoot");
         this.toSpawnPerLevel = 10;
         this.cookies.Reset();
         this.bucket.SetDirection(0);
@@ -39,7 +39,7 @@
         this.cookies.Draw();
         this.bee.Act();
 
-        if (this.bucket.GetX2() > this.bee.GetX() && this.bucket.GetX() < this.bee.GetX2() && this.bee.GetY2() > this.bucket.GetY()) {
+        if (this.bucket.GetX2() - 28 > this.bee.GetX() && this.bucket.GetX() + 28 < this.bee.GetX2() && this.bee.GetY2() - 15 > this.bucket.GetY()) {
             this.gameOver = true;
         }
 
@@ -74,7 +74,7 @@
     }
 
     public Click(x: number, y: number) {
-        if (this.score >= 3 && x > System.CanvasWidth - 110 && y > System.CanvasHeight - 70) {
+        if (this.score >= 3 && x > System.CanvasWidth - 110 && y <  70) {
             this.score -= 3;
             Minigame.minigameHelper.WritePoints(this.score);
             this.cookies.Shoot();
@@ -109,12 +109,12 @@ class Bee {
 
     public constructor(bucket:Frog) {
         this.x = Math.round(System.CanvasWidth / 2);
-        this.y = 0;
+        this.y = 80;
         this.directionX = 1;
         this.directionY = -1;
         this.hit = false;
 
-        this.animationData = new AnimationData(images.bee, Minigame.mid3Context, 4, 1);
+        this.animationData = new AnimationData(images.bee, Minigame.textContext, 4, 1);
         this.animation = new Animation(this.animationData, AnimationSpeed.Medium, Direction.horizontal, 0, 0, 4);
     }
 
@@ -132,16 +132,17 @@ class Bee {
     private Move() {
 
 
-        if (this.hitCounter > 300) {
-            this.hit = false;
-            console.log("unhit");
-            this.hitCounter = 0;
-        }
+
 
         if (this.hit) {
             this.hitCounter++;
-            this.x++;
+            this.x--;
             this.y--;
+
+            if (this.hitCounter > 300) {
+                this.hit = false;
+                this.hitCounter = 0;
+            }
         }
         else {
 
@@ -165,8 +166,8 @@ class Bee {
             this.x = 0;
         if (this.y + this.animationData.GetScreenSizeHeight() >= System.CanvasHeight)
             this.y = System.CanvasHeight - this.animationData.GetScreenSizeHeight();
-        else if (this.y < 0)
-            this.y  = 0;
+        else if (this.y < 50)
+            this.y = 50;
     }
 
     private Draw() { this.animation.DrawLoop(this.x, this.y); }
@@ -516,7 +517,12 @@ class DropPool {
                 this.bee.Hit();
                 this.RemoveCookie(i);
             }
-            else if (this.CheckCollision(this.drops[i]) && this.drops[i].GetTypes() != CookieType.FIRE) {
+            else if (this.drops[i].GetTypes() == CookieType.LIGHTNING && this.CheckCollision3(this.drops[i])) {
+                this.catcher.Miss();
+                this.bucket.Freeze();
+                this.RemoveCookie(i);
+            }
+            else if (this.CheckCollision(this.drops[i]) && this.drops[i].GetTypes() != CookieType.FIRE && this.drops[i].GetTypes() != CookieType.LIGHTNING) {
                 if (this.drops[i].GetTypes() == CookieType.RAIN) {
                     this.bucket.Wetten();
                     this.catcher.Hit(1);
@@ -525,20 +531,25 @@ class DropPool {
                     this.bucket.Wetten();
                     this.catcher.Hit(5);
                 }
-                else if (this.drops[i].GetTypes() == CookieType.LIGHTNING) {
-                    this.catcher.Miss();
-                    this.bucket.Freeze();
-                }
+                //else if (this.drops[i].GetTypes() == CookieType.LIGHTNING) {
+                //    this.catcher.Miss();
+                //    this.bucket.Freeze();
+                //}
                 this.RemoveCookie(i);
             }
         }
     }
+    private CheckCollision3(cookie: Drop) {
+        //if (!cookie.IsAlive()) return false;
+
+        return (cookie.GetX2() >= this.bucket.GetX() + 25 && cookie.GetX() <= this.bucket.GetX2() - 25 && cookie.GetY2() >= this.bucket.GetY() + 10 && cookie.GetY() <= this.bucket.GetY2() );
+    }
     private CheckCollision2(cookie: Drop) {
-        if (!cookie.IsAlive()) return false;
+        //if (!cookie.IsAlive()) return false;
         return (cookie.GetX2() >= this.bee.GetX() && cookie.GetX() <= this.bee.GetX2() && cookie.GetY2() >= this.bee.GetY() && cookie.GetY() <= this.bee.GetY2());
     }
     private CheckCollision(cookie: Drop) {
-        if (!cookie.IsAlive()) return false;
+        //if (!cookie.IsAlive()) return false;
 
         return (cookie.GetX2() >= this.bucket.GetX() && cookie.GetX() <= this.bucket.GetX2() && cookie.GetY2() >= this.bucket.GetY() && cookie.GetY() <= this.bucket.GetY2());
     }

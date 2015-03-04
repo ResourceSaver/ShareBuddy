@@ -103,23 +103,40 @@
             <h1>ShareBuddy</h1>
         </div>
         <div data-role="main" id="petMain" class="ui-content">
+
             <div class="ui-body ui-body-a ui-corner-all">
-                <h3>Name your Buddy</h3>
-                <div style="width:120px;">
-                    <input maxlength="10" name="name" id="petname" value="" placeholder="name" data-theme="a">
-                    <span id="max10" style="display:none; font-size:12px; color:red;">Max. 10 characters</span>
+                <div style="display:inline-block; width:50%; float:left;">
+                    <h3>Name your Buddy</h3>
+                    <div style="width:120px;">
+                        <input maxlength="10" name="name" id="petname" value="" placeholder="name" data-theme="a">
+                        <span id="max10" style="display:none; font-size:12px; color:red;">Max. 10 characters</span>
+                    </div>
+                    <br />
+
+                    Choose your gender<br />
+                    <fieldset data-role="controlgroup" data-theme="b" data-type="horizontal">
+                        <input type="radio" name="radio-choice-t-6" id="male" value="off">
+                        <input type="radio" name="radio-choice-t-6" id="radio-choice-t-6b" value="off">
+                        <label for="male">Male</label>
+                        <label for="radio-choice-t-6b">Female</label>
+                    </fieldset>
                 </div>
-                <br />
-                Choose your gender<br />
-                <fieldset data-role="controlgroup" data-theme="b" data-type="horizontal">
-                    <input type="radio" name="radio-choice-t-6" id="male" value="off">
-                    <input type="radio" name="radio-choice-t-6" id="radio-choice-t-6b" value="off">
-                    <label for="male">Male</label>
-                    <label for="radio-choice-t-6b">Female</label>
-                </fieldset>
+                <div style="display:inline-block; width:50%;">
+                    <h3>Referral</h3>
+
+                    <div style="width:70%;">
+                        <label for="select-choice-0" class="select">I was referred by:</label>
+                        <select name="select-choice-0" id="select-choice-1">
+                            <option value="standard">No one</option>
+                        </select>
+                    </div>
+                </div>
             </div>
-            <span id="petnameerror" style="color:red;"></span>
+
+            <span id="petnameerror" style="float:left; color:red;"></span>
         </div>
+
+
         <div data-position="fixed" data-tap-toggle="false" data-role="footer" data-fullscreen="false" data-theme="b">
             <div data-role="navbar" class="nav-glyphish-example">
                 <ul>
@@ -468,11 +485,31 @@
         <div data-position="fixed" data-role="footer" data-tap-toggle="false" data-theme="b">
             <div data-role="navbar">
                 <ul>
-                    <li></li>
-                    <li></li>
-                    <li></li>
+                    <li><a id="minigamesHighscores" data-theme="b">High scores</a></li>
                     <li></li>
                     <li><a id="closeRankButton" data-theme="b">Back</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!--Highscores-->
+    <div data-role="page" data-title="ShareBuddy" title="ShareBuddy" id="highscoresPage">
+        <div data-role="header">
+            <h1>Highscores</h1>
+        </div>
+        <div data-role="main" class="ui-content">
+            <table style="background-color:white;" data-role="table" data-mode="column" class="ui-responsive ui-shadow hightable"> <tbody></tbody> </table>
+        </div>
+
+        <div data-position="fixed" data-role="footer" data-tap-toggle="false" data-theme="b">
+            <div data-role="navbar">
+                <ul>
+                    <li><a id="cookingHS" data-theme="b">Cooking</a></li>
+                    <li><a id="frogHS" data-theme="b">Hygiene</a></li>
+                    <li><a id="currentHS" data-theme="b">Leisure</a></li>
+                    <li><a id="whackHS" data-theme="b">Fitness</a></li>
+                    <li><a id="hsbackbutton" data-theme="b">Back</a></li>
                 </ul>
             </div>
         </div>
@@ -530,6 +567,7 @@
             <div data-role="navbar" class="nav-glyphish-example">
                 <ul>
                     <li><a id="frontButtonO" class="ui-btn-active" data-theme="b">End Of Day</a></li>
+                    <li><a id="highscoresO" data-theme="b">Highscores</a></li>
                     <li><a id="forecastButtonO" data-theme="b">Forecast</a></li>
                     <li><a id="rankingButtonO" data-theme="b">Ranking</a></li>
                 </ul>
@@ -624,6 +662,9 @@
             Mini-game score: <span id="minigamescore"></span><br />
             Selected activity: <span id="activityValue"></span><br /><br />
             <span style="font-size:34px;" id="minigameresulttotal"></span> &nbsp; <img src="Images/score.png" style="height:32px;" /><br /><br />
+            
+                <table style="background-color:white;" data-role="table" data-mode="column" class="ui-responsive ui-shadow hightable"> <tbody></tbody> </table>
+            
             <div id="advicediv" class="ui-body ui-body-a ui-corner-all">
                 <span><strong>Advice</strong></span> <span style="font-style:italic;" id="advicetext"></span>
             </div>

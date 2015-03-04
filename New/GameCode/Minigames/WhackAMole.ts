@@ -14,7 +14,7 @@
         this.moleSpaceY = Math.round(System.CanvasHeight / this.numberOfMoles); // 3 = number of moles
         this.moleSpaceX = Math.round(System.CanvasWidth / this.numberOfMoles);
         this.piles = new NonAnimation(Minigame.textContext, this.moleSpaceY, this.moleSpaceX);
-        this.id = 2;
+        this.id = 4;
 
         this.finalLevel = 10;
         this.molesAllowedToMiss = 10;
@@ -77,8 +77,8 @@
 
         if (this.moles[y][x].Hit()) {
             if (this.moles[y][x].IsMole()) {
-                Minigame.minigameHelper.WritePoints(this.score);
                 this.score++;
+                Minigame.minigameHelper.WritePoints(this.score);
             }
             else { // player clicked bomb
                 this.missedTotal++;

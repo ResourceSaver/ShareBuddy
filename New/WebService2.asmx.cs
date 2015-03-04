@@ -27,16 +27,33 @@ namespace New
         }
 
         [WebMethod]
-        public int SetPetName(string username, string password, bool male, string petname)
+        public string GetMiniGameHighScore(int minigameid)
         {
-            logger.SetPetName(username, petname);
-            return conn.LogBuddyName(username, petname, male);
+            List<Highscore> highscores = conn.GetMiniGameHighscore(minigameid);
+            return jsonSerialiser.Serialize(highscores);
+        }
+
+        [WebMethod]
+        public int SetPetName(string username, string password, bool male, string petname, string referral)
+        {
+            logger.SetPetName(username, petname, referral);
+
+            int returnCode = conn.LogBuddyName(username, petname, male);
+
+            if (returnCode == 2 && referral != "No one")
+            {
+                conn.RewardReferral(referral, username);
+            }
+
+            return returnCode;
         }
 
         [WebMethod]
         public void CompleteAction(string username, string password, int actionid, int minigamescore, string type, bool cancelled, bool exhausted)
         {
             if (!conn.ValidateUser(username, password)) return;
+
+            conn.UpdateHighScore(username, actionid, minigamescore);
 
             string date = SystemTime.TodayGame();
             Event ev = conn.GetEvent(username, date);

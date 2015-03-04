@@ -13,7 +13,7 @@
 
         jumpat = Math.floor((System.CanvasWidth / 100) * 60);
         this.spacing = Math.round(System.CanvasHeight / this.numberOfSlides);
-        this.id = 4;
+        this.id = 3;
 
         this.finalLevel = 10;
         this.allowedMisses = 10;

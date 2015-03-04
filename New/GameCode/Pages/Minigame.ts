@@ -12,8 +12,7 @@
     public static mid1Context;
     public static mid2Context;
     public static mid3Context;
-
-
+    
     public constructor() {
         var backgroundCanvas: HTMLCanvasElement = <HTMLCanvasElement> document.getElementById("background");
         Minigame.backgroundContext = <CanvasRenderingContext2D> backgroundCanvas.getContext("2d");
@@ -60,7 +59,7 @@
         this.pizza = new PizzaGame();
         this.cooking = new Cooking();
 
-        $("#closeMinigame").on("click", () => this.StopMiniGame(true));
+        $("#closeMinigame").on("click", () => this.StopMiniGame(true, false));
     }
 
     private ClearCanvas() {
@@ -96,15 +95,19 @@
 
     public Act() {
         if (this.selectedMiniGame.Act()) {
-            this.StopMiniGame(false);
+            this.StopMiniGame(false, true);
         }
     }
 
-    private StopMiniGame(cancelled: boolean) {
+    private StopMiniGame(cancelled: boolean, pause:boolean) {
         this.selectedMiniGame.Act();
 
         Game.SetMain();
-        setTimeout(() => { Game.ShowMiniGameResult(this.selectedMiniGame.GetScore(), cancelled, this.selectedMiniGame.GetId()); }, 2000);
+
+        if (pause)
+            setTimeout(() => { Game.ShowMiniGameResult(this.selectedMiniGame.GetScore(), cancelled, this.selectedMiniGame.GetId()); }, 2000);
+        else 
+            Game.ShowMiniGameResult(this.selectedMiniGame.GetScore(), cancelled, this.selectedMiniGame.GetId()); 
     }
 } 
 
@@ -113,7 +116,7 @@ class MiniGameHelper {
     private actionButton: ActionButton;
 
     public constructor(canvas) {
-        this.missedBox = new Box(canvas, 0, System.CanvasWidth - 110, "#b92020");
+        this.missedBox = new Box(canvas, 0, 70, "#b92020");
         this.actionButton = new ActionButton();
     }
 

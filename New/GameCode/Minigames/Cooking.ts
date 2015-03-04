@@ -74,9 +74,9 @@
         var point = this.foods[x1][y1].Click();
 
         if (point >= 0) {
+            this.score += point;
             Minigame.minigameHelper.WritePoints(this.score);
             Minigame.minigameHelper.WriteTempText(point);
-            this.score += point;
         }
     }
 

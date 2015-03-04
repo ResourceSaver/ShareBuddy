@@ -11,8 +11,8 @@ class Connection {
         Ajax("Login", arr, callback);
     }
 
-    public SetPetName(petname, male, callback) {
-        var arr = '{"username":"' + this.username + '","password":"' + this.password + '","male":"' + male + '","petname":"' + petname + '"}';
+    public SetPetName(petname, male, callback, referral:string) {
+        var arr = '{"username":"' + this.username + '","password":"' + this.password + '","male":"' + male + '","petname":"' + petname + '","referral":"' + referral + '"}';
         Ajax("SetPetName", arr, callback);
     }
 
@@ -25,6 +25,11 @@ class Connection {
     public PerformAction(id: number, minigamescore: number, type:string, cancelled:boolean, moreOptions:boolean) {
         var arr = '{"username":"' + this.username + '","password":"' + this.password + '","actionid":"' + id + '","minigamescore":"' + minigamescore + '","type":"' + type + '","cancelled":"' + cancelled +  '","exhausted":"' + moreOptions + '"}';
         Ajax("CompleteAction", arr, () => { });
+    }
+
+    public Gethighscore(minigameid:number, callback) {
+        var arr = '{"minigameid":"' + minigameid + '"}';
+        Ajax("GetMiniGameHighScore", arr, callback);
     }
 
     public GetUsageHistory(callback) {

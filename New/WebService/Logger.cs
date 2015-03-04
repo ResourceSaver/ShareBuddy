@@ -32,9 +32,9 @@ namespace New.WebService
             Write(log);
         }
 
-        public void SetPetName(string user, string avatarname)
+        public void SetPetName(string user, string avatarname, string referrer)
         {
-            Write("SetPetName:{user:" + user + ";avatar:" + avatarname + ";");
+            Write("SetPetName:{user:" + user + ";avatar:" + avatarname + ";referrer:" + referrer + ";}");
         }
 
         public void Login(Data data, string username)

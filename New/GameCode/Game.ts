@@ -4,6 +4,7 @@
     private static tutorial: Tutorial;
     private static rewards: Rewards;
     private static offline: Offline;
+    private static highscores: Highscores;
     private static ranking: Ranking;
     private static usage: Usage;
     private static actionSelector: ActionSelector;
@@ -19,6 +20,7 @@
     private static currentActor: Actor;
 
     public Start() {
+
         Game.loginPage = new Login();
         Game.ShowLogin();
         $.mobile.loading("hide");
@@ -42,6 +44,7 @@
         Game.rewards = new Rewards();
         Game.mainScreen = new MainScreen();
         Game.offline = new Offline();
+        Game.highscores = new Highscores();
         Game.ranking = new Ranking();
         Game.usage = new Usage();
         Game.actionSelector = new ActionSelector(System.GetUserData().GetActions());
@@ -51,7 +54,6 @@
         Game.minigameresult = new MiniGameResult();
         Game.events = new Events();
         Game.agree = new Agree();
-
         Game.timer.start();
         this.ChangePage();
     }
@@ -64,9 +66,9 @@
         else if (!this.rewards.HasBeenShown()) { this.rewards.Show(); }
         else if (!this.events.HasBeenSeen()) { this.events.Show(); }
         else { this.mainScreen.Show(); }
-
-        //OrientationChangeS();
     }
+
+    public static ShowHighScores() { this.highscores.show(); }
     
     public static ShowWaitingForNewDay() {
         this.timer.stop();

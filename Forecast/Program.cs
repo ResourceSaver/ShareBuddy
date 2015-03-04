@@ -2,6 +2,7 @@
 using Live;
 using Live.Code;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace Forecast
 {
@@ -13,8 +14,20 @@ namespace Forecast
         static void Main()
         {
             string tomorrow = SystemTime.TomorrowReal();
-            List<int> forecast = Ecosense.GetForecast(tomorrow);
+            List<int> forecast = GetForecast(tomorrow);
+            int numberOfAttempts = 0;
+
+            while (forecast == null && numberOfAttempts < 3)
+            {
+                Thread.Sleep(60000);
+                forecast = GetForecast(tomorrow);
+                numberOfAttempts++;
+            }
+            
             conn.LogForecast(forecast, tomorrow);
         }
+
+
+        static List<int> GetForecast(string date){ return Ecosense.GetForecast(date); }
     }
 }
