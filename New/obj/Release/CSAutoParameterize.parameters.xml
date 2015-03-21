@@ -1,6 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<parameters>
-  <parameter name="connstring-Web.config Connection String" description="connstring Connection String used in web.config by the application to access the database." defaultValue="user id=;password=;server=.\SQLEXPRESS;Trusted_Connection=yes;database=petraceAVEo23k4T;connection timeout=30" tags="SqlConnectionString">
-    <parameterEntry kind="XmlFile" scope="C:\\Users\\Dell\\Documents\\ShareBuddy\\New\\obj\\Release\\Package\\PackageTmp\\web\.config$" match="/configuration/connectionStrings/add[@name='connstring']/@connectionString" />
-  </parameter>
-</parameters>

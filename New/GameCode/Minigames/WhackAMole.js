@@ -27,7 +27,7 @@ var WhackAMole = (function (_super) {
         this.piles.Draw();
         this.moleAliveDuration = 400;
 
-        this.toSpawnPerLevel = 15;
+        this.toSpawnPerLevel = 20;
 
         for (var i = 0; i < this.numberOfMoles; i++) {
             for (var j = 0; j < this.numberOfMoles; j++) {

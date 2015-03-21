@@ -24,14 +24,16 @@ namespace New
         {
             logger.Ranking(username);
             List<Ranking> ranking = conn.GetRanking();
-            return jsonSerialiser.Serialize(ranking);
+            string retVal = jsonSerialiser.Serialize(ranking);
+            return retVal;
         }
 
         [WebMethod]
         public string GetMiniGameHighScore(int minigameid)
         {
             List<Highscore> highscores = conn.GetMiniGameHighscore(minigameid);
-            return jsonSerialiser.Serialize(highscores);
+            string retVal = jsonSerialiser.Serialize(highscores);
+            return retVal;
         }
 
         [WebMethod]
@@ -79,7 +81,8 @@ namespace New
         {
             string tomorrow = SystemTime.TomorrowReal();
             List<int> forecast = conn.GetForecast(tomorrow);
-            return jsonSerialiser.Serialize(forecast);
+            string retval = jsonSerialiser.Serialize(forecast);
+            return retval;
         }
 
         [WebMethod]
@@ -93,15 +96,17 @@ namespace New
             int dayofweekYesterday = SystemTime.GetDayOfWeekYesterday();
             usage.electricityBaselineArray = conn.GetBaselineElectricity(dayofweekYesterday, username);
             logger.GetUsageHistory(usage, username);
-            return jsonSerialiser.Serialize(usage);
+
+            string retVal = jsonSerialiser.Serialize(usage);
+            return retVal;
         }
         
         [WebMethod]
         public string IsDayReady()
         {
             bool res = conn.IsDayReady();
-
-            return jsonSerialiser.Serialize(res);
+            string retVal = jsonSerialiser.Serialize(res);
+            return retVal;
         }
 
         [WebMethod]
@@ -110,8 +115,8 @@ namespace New
             Controller controller = new Controller();
             Data data = controller.Login(username, password);
             logger.Login(data, username);
-            return jsonSerialiser.Serialize(data);
-
+            string retVal = jsonSerialiser.Serialize(data);
+            return retVal;
         }
     }
 }

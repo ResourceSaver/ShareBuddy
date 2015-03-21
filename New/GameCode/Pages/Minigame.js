@@ -37,7 +37,7 @@
         Minigame.mid3Context.canvas.style.width = System.GetGW() + "px";
         Minigame.mid3Context.canvas.style.height = System.GetGH() + "px";
 
-        Minigame.minigameHelper = new MiniGameHelper(Minigame.textContext);
+        Minigame.minigameHelper = new MiniGameHelper();
 
         this.whackAMole = new WhackAMole();
         this.frogger = new RainingDrops();
@@ -102,8 +102,8 @@
 })();
 
 var MiniGameHelper = (function () {
-    function MiniGameHelper(canvas) {
-        this.missedBox = new Box(canvas, 0, 70, "#b92020");
+    function MiniGameHelper() {
+        this.missedBox = new Box(0, 70, "#b92020");
         this.actionButton = new ActionButton();
     }
     MiniGameHelper.prototype.ShowButton = function () {
@@ -159,22 +159,7 @@ var MiniGameHelper = (function () {
     };
 
     MiniGameHelper.prototype.WriteLevel = function (level) {
-        this.WriteText("Level " + level, 185, 15, "white");
-    };
-
-    MiniGameHelper.prototype.WriteLevelBig = function (text) {
-        var x = 145;
-        var y = 180;
-
-        Minigame.textContext.font = "bold " + 60 + "px Comic Sans MS";
-        Minigame.textContext.fillStyle = "black";
-        Minigame.textContext.fillText(text, x + 3, y + 3, 200);
-        Minigame.textContext.fillStyle = "White";
-        Minigame.textContext.fillText(text, x, y, 200);
-    };
-
-    MiniGameHelper.prototype.ClearTExt = function () {
-        Minigame.textContext.clearRect(145, 180 - 80, 210, 210);
+        this.WriteText("Level " + level, 195, 15, "white");
     };
     return MiniGameHelper;
 })();
@@ -182,6 +167,8 @@ var MiniGameHelper = (function () {
 var SuperMini = (function () {
     function SuperMini() {
         this.handledSpawns = 0;
+        this.xs = 145;
+        this.ys = 180;
     }
     SuperMini.prototype.SpawnIfReady = function () {
         if (this.gamePaused)
@@ -234,29 +221,38 @@ var SuperMini = (function () {
 
     SuperMini.prototype.StartNextLevel = function () {
         var _this = this;
+        console.log("HE");
         this.currentLevel++;
 
         if (this.currentLevel == this.finalLevel) {
-            Minigame.minigameHelper.WriteLevelBig("Final Level");
+            this.WriteLevelBig("Final Level");
             Minigame.minigameHelper.WriteLevel(this.currentLevel);
         } else if (this.currentLevel > this.finalLevel) {
             this.gameOver = true;
-            Minigame.minigameHelper.WriteLevelBig("You won!");
+            this.WriteLevelBig("You won!");
         } else {
-            Minigame.minigameHelper.WriteLevelBig("Level " + this.currentLevel);
+            this.WriteLevelBig("Level " + this.currentLevel);
             Minigame.minigameHelper.WriteLevel(this.currentLevel);
         }
 
         setTimeout(function () {
+            Minigame.textContext.clearRect(_this.xs, _this.ys - 80, 250, 100);
             _this.gamePaused = false;
-            Minigame.minigameHelper.ClearTExt();
-        }, 1100);
+        }, 1000);
+    };
+
+    SuperMini.prototype.WriteLevelBig = function (text) {
+        Minigame.textContext.font = "bold " + 60 + "px Helvetica Neue";
+        Minigame.textContext.fillStyle = "black";
+        Minigame.textContext.fillText(text, this.xs + 3, this.ys + 3, 200);
+        Minigame.textContext.fillStyle = "White";
+        Minigame.textContext.fillText(text, this.xs, this.ys, 200);
     };
     return SuperMini;
 })();
 
 var Box = (function () {
-    function Box(context, ys, xs, color) {
+    function Box(ys, xs, color) {
         this.color = color;
         this.count = 0;
         this.w = 100;
@@ -264,7 +260,7 @@ var Box = (function () {
         this.y = ys + 5;
         this.x = xs - 5;
 
-        this.context = context;
+        this.context = Minigame.textContext;
         this.context.lineWidth = 1;
         this.context.strokeStyle = "black";
         this.context.strokeRect(this.x, this.y, this.w, this.h);

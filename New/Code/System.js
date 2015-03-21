@@ -4,7 +4,7 @@
         $("#version").html(this.version);
         System.os = this.CheckOS();
         System.ls = new LocalStorageSB();
-        System.connection = new Connection();
+        System.connection = new ConnectionDemo();
     }
     System.prototype.Setup = function () {
         this.SetScreenSize();

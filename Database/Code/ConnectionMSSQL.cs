@@ -159,7 +159,6 @@ namespace Database.Code
 
         public void UpdateHighScore(string username, int activityid, int score)
         {
-            string query = "UpdateHighscore";
             int minigameid = -1;
 
             if (activityid < 4)
@@ -183,7 +182,7 @@ namespace Database.Code
             {
                 try
                 {
-                    SqlCommand cmd = new SqlCommand(query, connection);
+                    SqlCommand cmd = new SqlCommand("UpdateHighscore", connection);
                     cmd.Parameters.Add(new SqlParameter("username", username));
                     cmd.Parameters.Add(new SqlParameter("minigameid", minigameid));
                     cmd.Parameters.Add(new SqlParameter("score", score));

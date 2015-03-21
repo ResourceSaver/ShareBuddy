@@ -5,3 +5,10 @@ C:\Users\Dell\Desktop\Final Project\WS\Live\bin\Release\Database.pdb
 C:\Users\Dell\Desktop\Final Project\WS\Live\obj\Release\Live.csprojResolveAssemblyReference.cache
 C:\Users\Dell\Desktop\Final Project\WS\Live\obj\Release\Live.dll
 C:\Users\Dell\Desktop\Final Project\WS\Live\obj\Release\Live.pdb
+C:\Users\Dell\Documents\ShareBuddy\Live\bin\Release\Live.dll
+C:\Users\Dell\Documents\ShareBuddy\Live\bin\Release\Live.pdb
+C:\Users\Dell\Documents\ShareBuddy\Live\bin\Release\Database.dll
+C:\Users\Dell\Documents\ShareBuddy\Live\bin\Release\Database.pdb
+C:\Users\Dell\Documents\ShareBuddy\Live\obj\Release\Live.csprojResolveAssemblyReference.cache
+C:\Users\Dell\Documents\ShareBuddy\Live\obj\Release\Live.dll
+C:\Users\Dell\Documents\ShareBuddy\Live\obj\Release\Live.pdb

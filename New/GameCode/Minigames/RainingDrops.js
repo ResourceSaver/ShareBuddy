@@ -39,9 +39,7 @@ var RainingDrops = (function (_super) {
         if (this.bucket.GetX2() - 28 > this.bee.GetX() && this.bucket.GetX() + 28 < this.bee.GetX2() && this.bee.GetY2() - 15 > this.bucket.GetY()) {
             this.bucket.Freeze();
             this.gameOver = true;
-        }
-
-        if (this.missedTotal == this.allowedMisses) {
+        } else if (this.missedTotal == this.allowedMisses) {
             this.bucket.Freeze();
             this.gameOver = true;
         }
@@ -419,8 +417,8 @@ var Drop = (function () {
 var DropPool = (function () {
     function DropPool(canvas, canvas2, catcher, bucket, bee) {
         this.maxSize = 10;
-        this.ran = Math.random();
         this.speed = 2;
+        this.ran = Math.random();
         this.bucket = bucket;
         this.bee = bee;
         this.cloud1 = new Clouds(images.clouds1, 0, -60, canvas2);

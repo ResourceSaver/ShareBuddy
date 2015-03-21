@@ -7,11 +7,11 @@
 
     public static minigameHelper: MiniGameHelper;
 
-    public static backgroundContext;
-    public static textContext;
-    public static mid1Context;
-    public static mid2Context;
-    public static mid3Context;
+    public static backgroundContext: CanvasRenderingContext2D;
+    public static textContext: CanvasRenderingContext2D;
+    public static mid1Context: CanvasRenderingContext2D;
+    public static mid2Context: CanvasRenderingContext2D;
+    public static mid3Context: CanvasRenderingContext2D;
     
     public constructor() {
         var backgroundCanvas: HTMLCanvasElement = <HTMLCanvasElement> document.getElementById("background");
@@ -50,7 +50,7 @@
         Minigame.mid3Context.canvas.style.width = System.GetGW() + "px";
         Minigame.mid3Context.canvas.style.height = System.GetGH() + "px";
 
-        Minigame.minigameHelper = new MiniGameHelper(Minigame.textContext);
+        Minigame.minigameHelper = new MiniGameHelper();
 
         this.whackAMole = new WhackAMole();
         this.frogger = new RainingDrops();
@@ -113,8 +113,8 @@ class MiniGameHelper {
     private missedBox: Box;
     private actionButton: ActionButton;
 
-    public constructor(canvas) {
-        this.missedBox = new Box(canvas, 0, 70, "#b92020");
+    public constructor() {
+        this.missedBox = new Box(0, 70, "#b92020");
         this.actionButton = new ActionButton();
     }
 
@@ -171,24 +171,9 @@ class MiniGameHelper {
     }
 
     public WriteLevel(level: number) {
-        this.WriteText("Level " + level, 185, 15, "white");
+        this.WriteText("Level " + level,195, 15, "white");
     }
-
-    public WriteLevelBig(text:string) {
-        var x = 145;
-        var y = 180;
-
-       Minigame.textContext.font = "bold " + 60 + "px Comic Sans MS";
-        Minigame.textContext.fillStyle = "black";
-        Minigame.textContext.fillText(text, x + 3, y + 3, 200);
-        Minigame.textContext.fillStyle = "White";
-        Minigame.textContext.fillText(text, x, y, 200);
-    }
-
-    public ClearTExt() {
-        Minigame.textContext.clearRect(145, 180 - 80, 210, 210);
-    }
-}
+ }
 
 interface IMiniGame {
 
@@ -277,26 +262,38 @@ class SuperMini {
     }
 
     private StartNextLevel() {
-
+        console.log("HE");
         this.currentLevel++;
 
         if (this.currentLevel == this.finalLevel) {
-            Minigame.minigameHelper.WriteLevelBig("Final Level");
+            this.WriteLevelBig("Final Level");
             Minigame.minigameHelper.WriteLevel(this.currentLevel);
         }
         else if (this.currentLevel > this.finalLevel) {
             this.gameOver = true;
-            Minigame.minigameHelper.WriteLevelBig("You won!");
+            this.WriteLevelBig("You won!");
         }
         else {
-            Minigame.minigameHelper.WriteLevelBig("Level " + this.currentLevel);
+            this.WriteLevelBig("Level " + this.currentLevel);
             Minigame.minigameHelper.WriteLevel(this.currentLevel);
         }
 
         setTimeout(() => {
+            //Minigame.textContext.clearRect(this.xs, this.ys - 80, 250, 200);
+            Minigame.textContext.clearRect(this.xs, this.ys - 80, 250, 100);
             this.gamePaused = false;
-            Minigame.minigameHelper.ClearTExt();
-        }, 1100);
+        }, 1000);
+    }
+
+    private  xs = 145;
+    private ys = 180;
+
+    public WriteLevelBig(text: string) {
+        Minigame.textContext.font = "bold " + 60 + "px Helvetica Neue";
+        Minigame.textContext.fillStyle = "black";
+        Minigame.textContext.fillText(text, this.xs + 3, this.ys + 3, 200);
+        Minigame.textContext.fillStyle = "White";
+        Minigame.textContext.fillText(text, this.xs, this.ys, 200);
     }
 }
 
@@ -310,7 +307,7 @@ class Box {
     private count: number;
     private color: string;
 
-    public constructor(context: CanvasRenderingContext2D, ys: number, xs: number, color: string) {
+    public constructor(ys: number, xs: number, color: string) {
         this.color = color;
         this.count = 0;
         this.w = 100;
@@ -318,7 +315,7 @@ class Box {
         this.y = ys + 5;
         this.x = xs - 5;
 
-        this.context = context;
+        this.context = Minigame.textContext;
         this.context.lineWidth = 1;
         this.context.strokeStyle = "black";
         this.context.strokeRect(this.x, this.y, this.w, this.h);

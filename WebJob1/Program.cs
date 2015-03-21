@@ -1,4 +1,5 @@
 ﻿using Database.Code;
+using System.Collections.Generic;
 namespace NewDay
 {
     // To learn more about Microsoft Azure WebJobs, please see http://go.microsoft.com/fwlink/?LinkID=401557

@@ -20,3 +20,12 @@ C:\Users\Dell\Desktop\ShareBuddy\CreateUsers\bin\Release\Live.dll
 C:\Users\Dell\Desktop\ShareBuddy\CreateUsers\bin\Release\Database.pdb
 C:\Users\Dell\Desktop\ShareBuddy\CreateUsers\bin\Release\Live.pdb
 C:\Users\Dell\Desktop\ShareBuddy\CreateUsers\obj\Release\Setup.csprojResolveAssemblyReference.cache
+C:\Users\Dell\Documents\ShareBuddy\CreateUsers\bin\Release\CreateUsers.exe
+C:\Users\Dell\Documents\ShareBuddy\CreateUsers\bin\Release\CreateUsers.pdb
+C:\Users\Dell\Documents\ShareBuddy\CreateUsers\bin\Release\Database.dll
+C:\Users\Dell\Documents\ShareBuddy\CreateUsers\bin\Release\Live.dll
+C:\Users\Dell\Documents\ShareBuddy\CreateUsers\bin\Release\Database.pdb
+C:\Users\Dell\Documents\ShareBuddy\CreateUsers\bin\Release\Live.pdb
+C:\Users\Dell\Documents\ShareBuddy\CreateUsers\obj\Release\Setup.csprojResolveAssemblyReference.cache
+C:\Users\Dell\Documents\ShareBuddy\CreateUsers\obj\Release\CreateUsers.exe
+C:\Users\Dell\Documents\ShareBuddy\CreateUsers\obj\Release\CreateUsers.pdb

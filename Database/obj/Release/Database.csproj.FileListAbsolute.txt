@@ -12,3 +12,4 @@ C:\Users\Dell\Documents\ShareBuddy\Database\bin\Release\Database.dll
 C:\Users\Dell\Documents\ShareBuddy\Database\bin\Release\Database.pdb
 C:\Users\Dell\Documents\ShareBuddy\Database\obj\Release\Database.dll
 C:\Users\Dell\Documents\ShareBuddy\Database\obj\Release\Database.pdb
+C:\Users\Dell\Documents\ShareBuddy\Database\obj\Release\Database.csprojResolveAssemblyReference.cache

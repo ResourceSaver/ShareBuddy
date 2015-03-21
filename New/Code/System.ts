@@ -2,7 +2,7 @@
 declare function StandAloneDetectorAndroid();
 
 class System {
-    private static connection: Connection;
+    private static connection: iConnection;
     private static gw: number;
     private static gh: number;
     private static gesture: Gesture;
@@ -18,7 +18,8 @@ class System {
         $("#version").html(this.version);
         System.os = this.CheckOS();
         System.ls = new LocalStorageSB();
-        System.connection = new Connection();
+        System.connection = new ConnectionDemo();
+        //System.connection = new ConnectionDemo();
     }
 
     public Setup() {

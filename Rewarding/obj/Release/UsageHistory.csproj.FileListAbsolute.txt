@@ -26,3 +26,14 @@ C:\Users\Dell\Desktop\Final Project\WS\Rewarding\obj\Release\UsageHistory.pdb
 C:\Users\Dell\Desktop\ShareBuddy\Rewarding\bin\Release\UsageHistory.exe.config
 C:\Users\Dell\Desktop\ShareBuddy\Rewarding\obj\Release\UsageHistory.exe
 C:\Users\Dell\Desktop\ShareBuddy\Rewarding\obj\Release\UsageHistory.pdb
+C:\Users\Dell\Documents\ShareBuddy\Rewarding\bin\Release\UsageHistory.exe.config
+C:\Users\Dell\Documents\ShareBuddy\Rewarding\bin\Release\UsageHistory.exe
+C:\Users\Dell\Documents\ShareBuddy\Rewarding\bin\Release\UsageHistory.pdb
+C:\Users\Dell\Documents\ShareBuddy\Rewarding\bin\Release\Database.dll
+C:\Users\Dell\Documents\ShareBuddy\Rewarding\bin\Release\Live.dll
+C:\Users\Dell\Documents\ShareBuddy\Rewarding\bin\Release\System.Net.dll
+C:\Users\Dell\Documents\ShareBuddy\Rewarding\bin\Release\Database.pdb
+C:\Users\Dell\Documents\ShareBuddy\Rewarding\bin\Release\Live.pdb
+C:\Users\Dell\Documents\ShareBuddy\Rewarding\obj\Release\UsageHistory.csprojResolveAssemblyReference.cache
+C:\Users\Dell\Documents\ShareBuddy\Rewarding\obj\Release\UsageHistory.exe
+C:\Users\Dell\Documents\ShareBuddy\Rewarding\obj\Release\UsageHistory.pdb

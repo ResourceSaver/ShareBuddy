@@ -29,7 +29,7 @@
         this.piles.Draw();
         this.moleAliveDuration = 400;
 
-        this.toSpawnPerLevel = 15;
+        this.toSpawnPerLevel = 20;
 
         // reset moles
         for (var i = 0; i < this.numberOfMoles; i++) {

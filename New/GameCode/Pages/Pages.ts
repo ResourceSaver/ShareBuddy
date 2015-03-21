@@ -396,7 +396,7 @@ class Ranking {
         $("#rankTable tr").remove();
         $("#rankTable").table("refresh");
 
-        var html: string = "<tr class=\"ui - bar - d\" ><th data - priority = \"3\" > Place </th > <th data - priority = \"2\" > Name </th > <th data - priority = \"1\" > Score </th > < / tr>";
+        var html: string = "<tr class=\"ui-bar-d\" ><th data-priority = \"3\" >Place</th > <th data-priority = \"1\" > Name </th > <th data-priority = \"2\" > Score </th > < / tr>";
 
         for (var i = 0; i < val.length; i++) {
             var o = val[i];

@@ -35,12 +35,11 @@
         this.cookies.Draw();
         this.bee.Act();
 
-        if (this.bucket.GetX2() - 28 > this.bee.GetX() && this.bucket.GetX() + 28 < this.bee.GetX2() && this.bee.GetY2() - 15 > this.bucket.GetY()) {
+        if (this.bucket.GetX2() - 28 > this.bee.GetX() && this.bucket.GetX() + 28 < this.bee.GetX2() && this.bee.GetY2() - 15 > this.bucket.GetY()) { // stung
             this.bucket.Freeze();
             this.gameOver = true;
         }
-
-        if (this.missedTotal == this.allowedMisses) {
+        else if (this.missedTotal == this.allowedMisses) { // hit too many times
             this.bucket.Freeze();
             this.gameOver = true;
         }
@@ -125,10 +124,7 @@ class Bee {
     private moveCounter:number = 0;
 
     private Move() {
-
-
-
-
+        
         if (this.hit) {
             this.hitCounter++;
             this.x--;
@@ -190,7 +186,6 @@ class Clouds {
     private x: number;
     private y: number;
     private picture: SingleImage;
-    //private static resetX: number;
     private static drawWhen: number;
     private drawCount: number;
     private drawCounter2: number = 0;
@@ -201,7 +196,6 @@ class Clouds {
         this.picture = new SingleImage(canvas, image, image.height, image.width);
         this.drawCount = 0;
         Clouds.drawWhen = 4;
-        //Clouds.resetX = System.CanvasWidth + (System.CanvasWidth / 2);
     }
 
     public Act() {
@@ -390,7 +384,7 @@ class Drop {
             return false;
         }
 
-        //if (this.y % 20 == 0 && this.speed < 4)
+        //if (this.y % 15 == 0 && this.speed < 4)
         //    this.speed++;
 
         this.x += this.direction; 
@@ -426,9 +420,10 @@ class DropPool {
     private maxSize: number = 10;
     private catcher: RainingDrops;
     private cloud1: Clouds;
-    //private cloud2: Clouds;
     private bucket: Frog;
     private bee: Bee;
+    private speed = 2;
+    private ran: number = Math.random();
 
     public Shoot() {
         this.drops[this.maxSize].Spawn(this.bucket.GetX(), this.bucket.GetY(), -3, CookieType.FIRE, 0);
@@ -454,9 +449,6 @@ class DropPool {
             this.drops[i].Reset();
         }
     }
-
-    private ran: number = Math.random();
-    private  speed = 2;
 
     public Spawn() {
         if (this.drops[this.maxSize].IsAlive()) return false;
